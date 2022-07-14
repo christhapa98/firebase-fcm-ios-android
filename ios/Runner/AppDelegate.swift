@@ -10,7 +10,8 @@ import UIKit
         if #available(iOS 10.0, *) {
           UNUserNotificationCenter.current().delegate = self as? UNUserNotificationCenterDelegate
         }   
-        GMSServices.provideAPIKey("your-google-api-key-here")
+        FirebaseApp.configure()
+        // GMSServices.provideAPIKey("your-google-api-key-here")
         GeneratedPluginRegistrant.register(with: self)
         return super.application(application, didFinishLaunchingWithOptions: launchOptions)
       }
