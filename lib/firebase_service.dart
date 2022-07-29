@@ -4,6 +4,7 @@ import 'dart:io';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
     FlutterLocalNotificationsPlugin();
@@ -108,5 +109,11 @@ void _requestPermissions() {
 firebaseonMessageOpenedApp(context) {
   FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) {
     log('opened');
+    log(message.data['appUpdate'].toString());
+    Platform.isIOS
+        ? launchUrl(
+            Uri.parse('https://apps.apple.com/np/app/moneyfex/id1581733143'))
+        : launchUrl(Uri.parse(
+            'https://play.google.com/store/apps/details?id=com.companyname.riddha.moneyfexmobile'));
   });
 }
